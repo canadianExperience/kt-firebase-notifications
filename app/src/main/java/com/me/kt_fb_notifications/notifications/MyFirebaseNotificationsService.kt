@@ -1,10 +1,8 @@
 package com.me.kt_fb_notifications.notifications
 
-import android.app.AlarmManager
 import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.content.Intent
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationManagerCompat
@@ -23,12 +21,12 @@ class MyFirebaseNotificationsService: FirebaseMessagingService() {
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        super.onMessageReceived(remoteMessage)
 
         Log.d(TAG, "MESSAGE RECEIVED!!");
         remoteMessage.notification?.let{
             Log.i(TAG, "RECEIVED TITLE: ${it.title} \n \"RECEIVED TEXT: ${it.body}")
         }
-
 
         remoteMessage.notification?.let {
             val title = it.title
@@ -55,6 +53,5 @@ class MyFirebaseNotificationsService: FirebaseMessagingService() {
                 }
             }
         }
-        //super.onMessageReceived(remoteMessage)
     }
 }
